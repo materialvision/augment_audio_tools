@@ -22,7 +22,7 @@ output_folder: Path to the output folder for the augmented files
 
 ## Example:
 
-```python audio_augmentation.py ./input_audio ./output_audio --split_stereo --add_silence```
+´´´python audio_augmentation.py ./input_audio ./output_audio --split_stereo --add_silence´´´
 
 This command will process audio files in the input_audio folder, apply the augmentations, split stereo files into mono files, add 5 seconds of silence at the end, and save the resulting files in the output_audio folder.
 
