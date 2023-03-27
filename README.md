@@ -11,18 +11,23 @@ This Python script takes a folder of audio files as input and augments them usin
 ```pip install numpy soundfile audiomentations```
 
 ## Basic Usage
-Run the script using the command line with the required arguments:
+Run the augment_audio script using the command line with the required arguments:
 
-```python audio_augmentation.py input_folder output_folder --split_stereo --add_silence```
+```python augment_audio.py input_folder output_folder --split_stereo --add_silence```
 
 input_folder: Path to the input folder containing audio files
 output_folder: Path to the output folder for the augmented files
 --split_stereo: (Optional) Flag to split stereo files into two mono files
 --add_silence: (Optional) Flag to add 5 seconds of silence at the end of each sound file
 
+The second script is called augment_audio_speed.py and is simpler but more clean sounding since it only changes the playback speed my a random amount conrolled by the argument 
+--speed_change (amount between 0.1 and 1.)
+
 ## Example:
 
-```python audio_augmentation.py ./input_audio ./output_audio --split_stereo --add_silence```
+```python augment_audio.py ./input_audio ./output_audio --split_stereo --add_silence```
+
+```python augment_audio_speed.py ./input_audio ./output_audio --split_stereo --add_silence --speed_change 0.1```
 
 This command will process audio files in the input_audio folder, apply the augmentations, split stereo files into mono files, add 5 seconds of silence at the end, and save the resulting files in the output_audio folder.
 
