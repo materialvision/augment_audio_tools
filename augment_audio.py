@@ -21,7 +21,7 @@ def process_audio_file(input_file, output_folder, split_stereo, add_silence, aug
             end_idx = start_idx + chunk_duration
             chunk = channel[start_idx:end_idx]
             if add_silence:
-                silence = np.zeros(int(5 * sample_rate))
+                silence = np.zeros(int(add_silence * sample_rate))
                 chunk = np.concatenate((chunk, silence))
             output_filename = os.path.join(output_folder, f"{os.path.splitext(os.path.basename(input_file))[0]}_ch{i}_chunk{start_idx // chunk_duration}.wav")
             sf.write(output_filename, chunk, 44100)
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     parser.add_argument("input_folder", help="Path to the input folder containing audio files")
     parser.add_argument("output_folder", help="Path to the output folder for augmented files")
     parser.add_argument("--split_stereo", action="store_true", help="Split stereo files into two mono files")
-    parser.add_argument("--add_silence", action="store_true", help="Add 5 seconds of silence at the end of each sound file")
+    parser.add_argument("--add_silence", type=float, default=0.0, help="Length (s) of silence to add at the end of each sound file")
     args = parser.parse_args()
     augmentations = Compose([
         TimeStretch(min_rate=0.95, max_rate=1.05, p=1.0),

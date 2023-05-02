@@ -33,7 +33,7 @@ def process_audio_file(input_file, output_folder, chunk_duration, split_stereo, 
                 chunk = channel[start_idx:end_idx]
 
                 if add_silence:
-                    silence = np.zeros(int(5 * sample_rate))
+                    silence = np.zeros(int(add_silence * sample_rate))
                     chunk = np.concatenate((chunk, silence))
 
                 #output original
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     parser.add_argument("output_folder", help="Path to the output folder for processed files")
     parser.add_argument("--chunk_duration", type=int, default=30, help="Duration of each chunk in seconds (default: 30 seconds")
     parser.add_argument("--split_stereo", action="store_true", help="Split stereo files into two mono files")
-    parser.add_argument("--add_silence", action="store_true", help="Add 5 seconds of silence at the end of each sound file")
+    parser.add_argument("--add_silence", type=float, default=0.0, help="Length (s) of silence to add at the end of each sound file")
     parser.add_argument("--speed_change", type=float, default=0.0, help="Speed change factor 0.0-0.9 (default: 0.0, no change)")
     args = parser.parse_args()
 
