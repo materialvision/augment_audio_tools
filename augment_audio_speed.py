@@ -10,7 +10,10 @@ def is_supported_audio_file(filename):
     return ext.lower() in supported_extensions
 
 def change_speed(audio, speed_change):
-    return np.interp(np.arange(0, len(audio), speed_change), np.arange(0, len(audio)), audio)
+    if audio.ndim == 2:
+        return [np.interp(np.arange(0, len(a), speed_change), np.arange(0, len(a)), a) for a in audio]
+    else:
+        return np.interp(np.arange(0, len(audio), speed_change), np.arange(0, len(audio)), audio)
 
 def resample_audio(input_audio, original_sample_rate=44100, target_sample_rate=44100):
     if original_sample_rate != target_sample_rate:
