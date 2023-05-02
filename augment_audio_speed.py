@@ -22,7 +22,11 @@ def resample_audio(input_audio, original_sample_rate=44100, target_sample_rate=4
 def process_audio_file(input_file, output_folder, chunk_duration, split_stereo, add_silence, speed_change):
     audio, sample_rate = sf.read(input_file)
     if split_stereo and audio.ndim == 2:
-        channels = [audio[:, 0], audio[:, 1]]
+            if (audio[:, 0]==audio[:, 1]).all():
+                print("Stereo file contains exactly same mono signal doubled which is redundant, taking first channel only")
+                channels = [audio[:, 0]]
+            else:
+                channels = [audio[:, 0], audio[:, 1]]
     else:
         channels = [audio]
     for i, channel in enumerate(channels):
