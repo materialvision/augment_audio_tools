@@ -1,6 +1,6 @@
 # Audio Augmentation Tools for Machine Learning
 
-This script provides a set of audio augmentations for machine learning purposes. It allows you to process audio files by changing their speed, resampling, splitting stereo files into mono, adding silence, and creating chunks.
+This script provides a set of audio augmentations for machine learning purposes, in particular useful for the RAVE model https://github.com/acids-ircam/RAVE . It allows you to process audio files by changing their speed, resampling, splitting stereo files into mono, adding silence, and creating chunks.
 
 ## Features
 
