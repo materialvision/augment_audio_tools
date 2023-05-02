@@ -1,37 +1,57 @@
-# Audio Augmentation Script
+# Audio Augmentation Tools for Machine Learning
 
-This Python script takes a folder of audio files as input and augments them using the audiomentations library. The script applies TimeStretch, PitchShift, and Shift effects. The output files are resampled to 44100 Hz and saved as WAV files. It also provides options to split stereo files into mono files, split longer files into 30-second chunks, and add 5 seconds of silence at the end of each file.
+This script provides a set of audio augmentations for machine learning purposes. It allows you to process audio files by changing their speed, resampling, splitting stereo files into mono, adding silence, and creating chunks.
 
-## Installation
+## Features
 
-1. Make sure you have Python 3.6 or higher installed.
+- Change speed of the audio file
+- Resample the audio file
+- Split stereo files into mono
+- Add silence to the audio file
+- Create chunks of the audio file
 
-2. Install the required libraries:
+## Requirements
 
-```pip install numpy soundfile audiomentations```
+- Python 3.6 or higher
+- NumPy
+- SoundFile
+- Resampy
 
-## Basic Usage
-Run the augment_audio script using the command line with the required arguments:
+To install the required packages, you can run:
 
-```python augment_audio.py input_folder output_folder --split_stereo --add_silence```
+```bash
+pip install numpy soundfile resampy
+```
 
-input_folder: Path to the input folder containing audio files
-output_folder: Path to the output folder for the augmented files
---split_stereo: (Optional) Flag to split stereo files into two mono files
---add_silence: (Optional) Flag to add 5 seconds of silence at the end of each sound file
+## Usage
 
-The second script is called augment_audio_speed.py and is simpler but more clean sounding since it only changes the playback speed my a random amount conrolled by the argument 
---speed_change (amount between 0.1 and 1.)
+To use this script, run it from the command line with the following arguments:
 
-## Example:
+```
+python audio_augmentation.py <input_folder> <output_folder> [--chunk_duration] [--split_stereo] [--add_silence] [--speed_change]
+```
 
-```python augment_audio.py ./input_audio ./output_audio --split_stereo --add_silence```
+- `input_folder`: Path to the input folder containing audio files
+- `output_folder`: Path to the output folder for processed files
+- `--chunk_duration`: (optional) Duration of each chunk in seconds (default: 30 seconds)
+- `--split_stereo`: (optional) Split stereo files into two mono files
+- `--add_silence`: (optional) Add 5 seconds of silence at the end of each sound file
+- `--speed_change`: (optional) Speed change factor 0.0-0.9 (default: 0.0, no change)
 
-```python augment_audio_speed.py ./input_audio ./output_audio --split_stereo --add_silence --speed_change 0.1```
+Example:
 
-This command will process audio files in the input_audio folder, apply the augmentations, split stereo files into mono files, add 5 seconds of silence at the end, and save the resulting files in the output_audio folder.
+```bash
+python audio_augmentation.py input_folder output_folder --chunk_duration 30 --split_stereo --add_silence --speed_change 0.1
+```
 
-## Notes
-The input folder can contain audio files in various formats such as WAV, FLAC, OGG, AIFF, and MP3.
-The script will output WAV files with a sample rate of 44100 Hz.
-The output filenames will contain information about the channel and chunk number. If augmentations are applied, "_augmented" will be added to the filename.
+This will process all supported audio files in the `input_folder` and save the processed files to the `output_folder` with specified augmentations.
+
+## Supported Audio Formats
+
+The script supports the following audio file formats:
+
+- .wav
+- .flac
+- .ogg
+- .aiff
+- .mp3
