@@ -35,13 +35,13 @@ python audio_augmentation.py <input_folder> <output_folder> [--chunk_duration] [
 - `output_folder`: Path to the output folder for processed files
 - `--chunk_duration`: (optional) Duration of each chunk in seconds (default: 30 seconds)
 - `--split_stereo`: (optional) Split stereo files into two mono files
-- `--add_silence`: (optional) Add 5 seconds of silence at the end of each sound file
+- `--add_silence`: (optional) Length of silence in seconds added to the end of each sound file
 - `--speed_change`: (optional) Speed change factor 0.0-0.9 (default: 0.0, no change)
 
 Example:
 
 ```bash
-python audio_augmentation.py input_folder output_folder --chunk_duration 30 --split_stereo --add_silence --speed_change 0.1
+python audio_augmentation.py input_folder output_folder --chunk_duration 30 --split_stereo --add_silence 1.5 --speed_change 0.1
 ```
 
 This will process all supported audio files in the `input_folder` and save the processed files to the `output_folder` with specified augmentations.
