@@ -28,7 +28,7 @@ pip install numpy soundfile resampy
 To use this script, run it from the command line with the following arguments:
 
 ```
-python audio_augmentation.py <input_folder> <output_folder> [--chunk_duration] [--split_stereo] [--add_silence] [--speed_change]
+python augment_audio_speed.py <input_folder> <output_folder> [--chunk_duration] [--split_stereo] [--add_silence] [--speed_change]
 ```
 
 - `input_folder`: Path to the input folder containing audio files
@@ -41,7 +41,7 @@ python audio_augmentation.py <input_folder> <output_folder> [--chunk_duration] [
 Example:
 
 ```bash
-python audio_augmentation.py input_folder output_folder --chunk_duration 30 --split_stereo --add_silence 1.5 --speed_change 0.1
+python augment_audio_speed.py input_folder output_folder --chunk_duration 30 --split_stereo --add_silence 1.5 --speed_change 0.1
 ```
 
 This will process all supported audio files in the `input_folder` and save the processed files to the `output_folder` with specified augmentations.
