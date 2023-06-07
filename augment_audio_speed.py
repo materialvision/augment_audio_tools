@@ -31,7 +31,10 @@ def process_audio_file(input_file, output_folder, chunk_duration, split_stereo, 
             else:
                 channels = [audio[:, 0], audio[:, 1]]
     else:
-        channels = [audio]
+        #channels = [audio]
+        # If the audio has 2 channels, then take the average of both channels
+        # If it has only 1 channel, then just take it as it is
+        channels = [np.mean(audio, axis=1) if audio.ndim == 2 else audio]
     for i, channel in enumerate(channels):
         if chunk_duration > 0:
             chunk_duration_s = chunk_duration * sample_rate
@@ -41,6 +44,13 @@ def process_audio_file(input_file, output_folder, chunk_duration, split_stereo, 
 
                 if add_silence:
                     silence = np.zeros(int(add_silence * sample_rate))
+                    chunk = np.concatenate((chunk, silence))
+
+                if add_silence:
+                    if chunk.ndim == 2:  # if stereo audio
+                        silence = np.zeros((int(add_silence * sample_rate), 2))
+                    else:  # if mono audio
+                        silence = np.zeros(int(add_silence * sample_rate))
                     chunk = np.concatenate((chunk, silence))
 
                 #output original
